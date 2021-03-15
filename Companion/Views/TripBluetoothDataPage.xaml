@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Companion.Views.TripBluetoothDataPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10"
+                     Orientation="Vertical">
+
+            <Button x:Name="InitializeButton"
+                    Margin="10"
+                    Clicked="InitializeCommandButton_Clicked"
+                    Text="Explicit Initialize" />
+
+            <Button x:Name="SearchButton"
+                    Margin="10"
+                    Clicked="SendCommandButton_Clicked"
+                    Text="Send Command" />
+
+            <Entry x:Name="CommandText"
+                   Text="Command Name" />
+
+            <ScrollView VerticalOptions="StartAndExpand">
+                <Label x:Name="Output"
+                       VerticalOptions="CenterAndExpand" />
+
+            </ScrollView>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

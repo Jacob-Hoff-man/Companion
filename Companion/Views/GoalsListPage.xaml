@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Companion.Views.GoalsListPage">
+
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
+            <Frame BackgroundColor="DarkGray" Padding="24" CornerRadius="0">
+                <Label Text="Goal Profiles" VerticalOptions="Center" HorizontalOptions="Center" />
+            </Frame>
+
+            <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="Gray">
+                <Grid.RowDefinitions>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+
+                </Grid.ColumnDefinitions>
+
+            </Grid>
+
+            <Button x:Name="btnDeleteGoalProfiles" Text="Delete Goal Profile" Clicked="ButtonClickedOnDelete"/>
+
+            <ListView x:Name="listViewGoalProfiles">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="ButtonClickedOnDelete"
+                                          CommandParameter="{Binding .}"
+                                          Text="Delete"
+                                          IsDestructive="True"/>
+                            </ViewCell.ContextActions>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="15,10">
+                                    <Label HorizontalOptions="Start"
+                                           VerticalTextAlignment="Center"
+                                           Text="{Binding Name}"/>
+                                    <Label HorizontalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           Text="{Binding Weight}"
+                                           Margin="10,0,0,0"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
