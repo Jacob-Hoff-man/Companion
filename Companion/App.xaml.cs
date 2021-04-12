@@ -11,14 +11,14 @@ namespace Companion
 
     public partial class App : Application
     {
-        static GoalProfileDatabase goalProfileDatabase;
-        static TripsDatabase tripsDatabase;
+        private static GoalProfileDatabase goalProfileDatabase;
+        private static TripsDatabase tripsDatabase;
 
         public App()
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+           // MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
