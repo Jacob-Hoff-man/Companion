@@ -15,11 +15,33 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="Plugin.BLE" Version="2.1.1" />
+    <PackageReference Include="MvvmCross" Version="7.1.2" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.483" />
+    <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="MvvmCross.Forms" Version="7.1.2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="Models\" />
     <Folder Include="Data\" />
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\DeviceListPage.xaml.cs">
+      <DependentUpon>DeviceListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ServiceListPage.xaml.cs">
+      <DependentUpon>ServiceListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\DescriptorDetailPage.xaml.cs">
+      <DependentUpon>DescriptorDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CharacteristicListPage.xaml.cs">
+      <DependentUpon>CharacteristicListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CharacteristicDetailPage.xaml.cs">
+      <DependentUpon>CharacteristicDetailPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

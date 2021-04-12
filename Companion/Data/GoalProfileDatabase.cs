@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using Companion.Data;
 using Companion.Models;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Companion.Data
 {
@@ -56,10 +57,12 @@ namespace Companion.Data
                 if(goalProfile.ID != 0)
                 {
                     database.Update(goalProfile);
+                    Debug.WriteLine("Added to database.");
                     return goalProfile.ID;
                 }
                 else
                 {
+                    Debug.WriteLine("Added to empty database.");
                     return database.Insert(goalProfile);
                 }
             }

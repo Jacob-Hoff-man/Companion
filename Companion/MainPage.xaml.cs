@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace Companion.Views
+namespace Companion
 {
-    public partial class CharacteristicDetailPage : ContentPage
+    public partial class MainPage : TabbedPage
     {
-        public CharacteristicDetailPage()
+        public MainPage()
         {
             InitializeComponent();
         }

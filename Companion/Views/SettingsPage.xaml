@@ -2,12 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Companion.Models"
-             x:Class="Companion.Views.SettingsPage">
+             x:Class="Companion.Views.SettingsPage" Title="Settings" IconImageSource="settings_icon.png">
 
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="20">
 
         <Frame BackgroundColor="DarkGray" Padding="24" CornerRadius="0">
-            <Label Text="Settings Page" VerticalOptions="Center" HorizontalOptions="Center" />
+            <Label Text="Settings Page" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"  />
 
         </Frame>
         <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="Gray">

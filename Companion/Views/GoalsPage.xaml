@@ -3,20 +3,78 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Companion.ViewModels"
              x:Class="Companion.Views.GoalsPage" Title="Goals" IconImageSource="goals_icon.png">
 
-    <ContentPage.BindingContext>
-        <local:DataViewModel/>
-    </ContentPage.BindingContext>
-
     <ScrollView>
-        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="20">
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="5">
 
-            
-
-            <Frame BackgroundColor="DarkGray" Padding="24" CornerRadius="0">
-                <Label Text="Add a new goal profile:" VerticalOptions="Center" HorizontalOptions="Center" />
+            <Frame BackgroundColor="DarkGray" CornerRadius="0">
+                <Label Text="Goal Profiles:" VerticalOptions="Center" HorizontalOptions="Center" />
             </Frame>
 
-            <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="Gray">
+            <ListView x:Name="listViewGoalProfiles" BindingContext="{Binding GoalProfiles}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                
+                            </ViewCell.ContextActions>
+
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="15,10">
+                                    <Label HorizontalOptions="Start"
+                                           VerticalTextAlignment="Center"
+                                           Text="{Binding Name}"/>
+                                    <Label HorizontalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           Text="{Binding Weight}"
+                                           Margin="10,0,0,0"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+
+            <Frame BackgroundColor="DarkGray" Padding="24" CornerRadius="0">
+                <Label Text="Create Goal Profile:" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"  />
+            </Frame>
+
+            <Button x:Name="btnSaveGoalProfile" Text="Save Goal Profile" Command="{Binding SaveGoalProfileCommand}"/>
+
+            <TableView Intent="Form">
+                <TableView.Root>
+                    <TableSection>
+                        <EntryCell Label="Name" Text="{Binding Name}" />
+                        <EntryCell Label="Date of Birth" Text="{Binding BirthDate, StringFormat='{0:d}'}" />
+                        <EntryCell Label="Gender" Text="{Binding Gender}" />
+                        <EntryCell Label="Height" />
+                        <EntryCell Label="Feet" Keyboard="Numeric" Text="{Binding Feet}" />
+                        <EntryCell Label="Inches" Keyboard="Numeric" Text="{Binding Inches}" />
+                        <EntryCell Label="Weight" Keyboard="Numeric" Text="{Binding Weight}" />
+                        <EntryCell Label="Tire Diameter" Keyboard="Numeric" Text="{Binding TireDiameter}" />
+                        <EntryCell Label="Goal Mode" Text="{Binding GoalMode}" />
+                        <EntryCell Label="Target Weight" Keyboard="Numeric" Text="{Binding TargetWeight}" />
+                    </TableSection>
+                </TableView.Root>
+            </TableView>
+
+
+
+
+        </StackLayout>
+
+    </ScrollView>
+
+</ContentPage>
+
+
+
+
+
+
+
+<!--<Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="Gray">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -77,20 +135,14 @@
                 <Entry x:Name="targetWeightEntry" Placeholder="pounds" Grid.Row="8" Grid.Column="1"/>
 
 
-            </Grid>
+            </Grid>-->
 
-            <Button x:Name="btnSaveGoalProfile" Text="Save Goal Profile" Clicked="ButtonClickedSaveGoalProfile" />
 
-            <Frame BackgroundColor="DarkGray" Padding="24" CornerRadius="0">
-                <Label Text="Goal Profiles:" VerticalOptions="Center" HorizontalOptions="Center" />
-            </Frame>
-
-            <ListView x:Name="listViewGoalProfiles">
-                <ListView.ItemTemplate>
+                <!--<ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                <MenuItem Clicked="ButtonClickedOnDelete"
+                                <MenuItem
                                           CommandParameter="{Binding .}"
                                           Text="Delete"
                                           IsDestructive="True"/>
@@ -108,8 +160,4 @@
                             </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </ScrollView>
-</ContentPage>
+                </ListView.ItemTemplate>-->

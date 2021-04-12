@@ -1,55 +1,201 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Companion.Views.TripPage"
+             xmlns:local="clr-namespace:Companion.Views"
+             xmlns:vm="clr-namespace:Companion.ViewModels"
+             x:Class="Companion.Views.TripPage" Title="Trip" IconImageSource="trip_icon.png"
              >
 
-<StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="20">
 
-        <Frame BackgroundColor="DarkGray" Padding="24" CornerRadius="0">
-            <Label Text="Trip Page" VerticalOptions="Center" HorizontalOptions="Center" />
+<StackLayout  VerticalOptions="Center" HorizontalOptions="Center" Padding="0">
 
-        </Frame>
-        <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="Gray">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+    <Frame BackgroundColor="DarkGray" Padding="10" CornerRadius="0">
+        <Label Text="Trip Page" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" />
+    </Frame>
 
+    <StackLayout HorizontalOptions="Center" Padding="10" >
 
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <Label x:Name="speedLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Speed: " />
+                   
+                  <Span Text="{Binding RecordedData.Speed}" />
+                  <Span Text=" m/s" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
 
-            <StackLayout Grid.Row="0" Grid.Column="0">
-                <Label Text="Select Goal Profile" />
-                <Button Text="idk should be a list" />
-            </StackLayout>
+        <Label x:Name="distanceLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Distance: " />
+                  <Span Text="{Binding RecordedData.Distance}" />
+                  <Span Text=" km" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
 
-            <StackLayout Grid.Row="1" Grid.Column="0">
+        <Label x:Name="averageSpeedLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Average Speed: " />
+                  <Span Text="{Binding RecordedData.AverageSpeed}" />
+                  <Span Text=" m/s" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
 
-                <Label Text="Connect To Cycle Statistic Tool To Begin" />
+        <Label x:Name="accelerationLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Acceleration: " />
+                  <Span Text="{Binding RecordedData.Acceleration}" />
+                  <Span Text=" m/(s*s)" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
 
-                <Button x:Name="SearchButton"
-                        Margin="10"
-                        Clicked="SearchButton_Clicked"
-                        Text="Search For BLE Devices" />
+        <Label x:Name="inclineLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Incline: " />
+                  <Span Text="{Binding RecordedData.Incline}" />
+                  <Span Text=" deg" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
 
-                <ListView x:Name="FoundBLEDevicesListView"
-                          Footer=""
-                          ItemTapped="FoundBluetoothDevicesListView_ItemTapped" />
+        <Label x:Name="latitudeLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Latitude: " />
+                  <Span Text="{Binding RecordedData.Latitude}" />
+                  <Span Text=" degrees" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
 
+        <Label x:Name="longitudeLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Longitude: " />
+                  <Span Text="{Binding RecordedData.Longitude}" />
+                  <Span Text=" degrees" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
 
-            </StackLayout>
+        <Label x:Name="compassLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Compass: " />
+                  <Span Text="{Binding RecordedData.Compass}" />
+                  
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
 
-            <ActivityIndicator x:Name="IsBusyIndicator"
-                               Scale="0.3" />
+        <Label x:Name="altitudeLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Altitude: " />
+                  <Span Text="{Binding RecordedData.Altitude}" />
+                  <Span Text=" m" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
 
-        </Grid>
+        <Label x:Name="powerLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Power: " />
+                  <Span Text="{Binding RecordedData.Power}" />
+                  <Span Text=" watt" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label x:Name="caloriesLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Calories: " />
+                  <Span Text="{Binding RecordedData.Calories}" />
+                  <Span Text=" kC" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label x:Name="gearRatioLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Gear Ratio: " />
+                  <Span Text="{Binding RecordedData.GearRatio}" />
+                  
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label x:Name="cadenceLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Cadence: " />
+                  <Span Text="{Binding RecordedData.Cadence}" />
+                  <Span Text=" p/m" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label x:Name="windSpeedLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Wind Speed: " />
+                  <Span Text="{Binding RecordedData.WindSpeed}" />
+                  <Span Text=" m/s" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label x:Name="windDirectionLabel" FontAttributes="Bold" FontSize="Medium">
+            <Label.FormattedText>
+                <FormattedString>
+                  <Span Text="Wind Direction: " />
+                  <Span Text="{Binding RecordedData.WindDirection}" />
+                  <Span Text=" Degrees" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
 
     </StackLayout>
+
+    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0" >
+        <Button x:Name="buttonStartTrip" Text="Start" FontAttributes="Bold" Clicked="Start_Clicked"></Button>
+
+        <Button x:Name="buttonPauseTrip" Text="Pause" FontAttributes="Bold" Clicked="Pause_Clicked"></Button>
+
+        <Button x:Name="buttonFinishTrip" Text="Finish" FontAttributes="Bold" Clicked="Finish_Clicked"></Button>
+
+    </StackLayout>
+
+    <!--<Label Text="Select a Goal Profile" VerticalOptions="Center" HorizontalOptions="Center" />
+
+    <ListView
+            x:Name="goalProfileListView"
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+
+            ItemsSource="{Binding .}"
+            VerticalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell
+                        Detail="{Binding State}"
+                        Text="{Binding Name}"
+                        TextColor="Black" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+
+</StackLayout>
 
 </ContentPage>

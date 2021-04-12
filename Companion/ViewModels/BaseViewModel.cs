@@ -1,10 +1,18 @@
 ﻿using System;
-namespace Companion.ViewModels
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+public class BaseViewModel : INotifyPropertyChanged
 {
-    public class BaseViewModel
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
-        public BaseViewModel()
-        {
-        }
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs((propertyName)));
+    }
+
+    protected BaseViewModel()
+    {
     }
 }
