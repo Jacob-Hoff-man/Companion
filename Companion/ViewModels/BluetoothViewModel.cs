@@ -13,11 +13,12 @@ using Xamarin.Essentials;
 using Plugin.BLE.Abstractions.EventArgs;
 
 using System.Windows.Input;
+using System.Collections.Generic;
 
 namespace Companion.ViewModels
 {
 
-    public class BluetoothViewModel
+    public class BluetoothViewModel : BaseViewModel
     {
         //singleton
         private static readonly Lazy<BluetoothViewModel> LazyViewModel = new Lazy<BluetoothViewModel>(() => new BluetoothViewModel());
@@ -49,15 +50,48 @@ namespace Companion.ViewModels
         public ICharacteristic Characteristic_Cadence { get; set; }
         public ICharacteristic Characteristic_WindSpeed { get; set; }
         public ICharacteristic Characteristic_WindDirection { get; set; }
+
+        public List<ICharacteristic> Characteristics { get; set; }
         //
         private bool IsUpdatingCharacteristics;
-        public RecordedData RecordedData { get; set; }
+
+        private RecordedData _recordedData;
+        public RecordedData RecordedData
+        {
+            get
+            {
+                return _recordedData;
+            }
+            set
+            {
+                _recordedData = value;
+                OnPropertyChanged();
+            }
+        }
         //
 
 
         public BluetoothViewModel()
         {
-            
+            RecordedData = new RecordedData
+            {
+                Speed = 0.0F,
+                Distance = 0.0f,
+                AverageSpeed = 0.0F,
+                Acceleration = 0.0F,
+                Incline = 0.0F,
+                Latitude = 0.0F,
+                Longitude = 0.00F,
+                Compass = 0.0F,
+                Altitude = 0.0F,
+                Power = 0.0F,
+                Calories = 0.0F,
+                GearRatio = 0.0F,
+                Cadence = 0.0F,
+                WindSpeed = 0.0F,
+                WindDirection = "NW"
+            };
+
             IBLE = CrossBluetoothLE.Current;
             AdapterBLE = CrossBluetoothLE.Current.Adapter;
             DeviceList = new ObservableCollection<IDevice>();
@@ -72,30 +106,7 @@ namespace Companion.ViewModels
 
         }
 
-        void Save()
-        {
-            //i don't know if this conversion is going to work naturally, but eh fuck it lessssgo
-            var newRecordedData = new RecordedData
-            {
-                Speed = System.BitConverter.ToSingle(Characteristic_Speed.Value, 0),
-                Distance = System.BitConverter.ToSingle(Characteristic_Distance.Value, 0),
-                AverageSpeed = System.BitConverter.ToSingle(Characteristic_AverageSpeed.Value, 0),
-                Acceleration = System.BitConverter.ToSingle(Characteristic_Acceleration.Value, 0),
-                Incline = System.BitConverter.ToSingle(Characteristic_Incline.Value, 0),
-                Latitude = System.BitConverter.ToSingle(Characteristic_Latitude.Value, 0),
-                Longitude = System.BitConverter.ToSingle(Characteristic_Longitude.Value, 0),
-                Compass = System.BitConverter.ToSingle(Characteristic_Compass.Value, 0),
-                Altitude = System.BitConverter.ToSingle(Characteristic_Altitude.Value, 0),
-                Power = System.BitConverter.ToSingle(Characteristic_Power.Value, 0),
-                Calories = System.BitConverter.ToSingle(Characteristic_Calories.Value, 0),
-                GearRatio = System.BitConverter.ToSingle(Characteristic_GearRatio.Value, 0),
-                Cadence = System.BitConverter.ToSingle(Characteristic_Cadence.Value, 0),
-                WindSpeed = System.BitConverter.ToSingle(Characteristic_WindSpeed.Value, 0),
-                WindDirection = "NW"    //**need to make byte [] into string or something **
-            };
 
-            RecordedData = newRecordedData;
-        }
 
         //BLE stuff
 
@@ -122,114 +133,6 @@ namespace Companion.ViewModels
             }
         }
 
-        public async void StartCharacteristicsUpdates()
-        {
-            try
-            {
-                IsUpdatingCharacteristics = true;
-
-                Characteristic_Speed.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Distance.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_AverageSpeed.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Acceleration.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Incline.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Latitude.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Longitude.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Compass.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Altitude.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Power.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Calories.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_GearRatio.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Cadence.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_WindSpeed.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_WindDirection.ValueUpdated -= Characteristic_ValueUpdated;
-
-                Characteristic_Speed.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_Distance.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_AverageSpeed.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_Acceleration.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_Incline.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_Latitude.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_Longitude.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_Compass.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_Altitude.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_Power.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_Calories.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_GearRatio.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_Cadence.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_WindSpeed.ValueUpdated += Characteristic_ValueUpdated;
-                Characteristic_WindDirection.ValueUpdated += Characteristic_ValueUpdated;
-
-                Debug.WriteLine("Starting Characteristic Updates");
-                await Characteristic_Speed.StartUpdatesAsync();
-                await Characteristic_Distance.StartUpdatesAsync();
-                await Characteristic_AverageSpeed.StartUpdatesAsync();
-                await Characteristic_Acceleration.StartUpdatesAsync();
-                await Characteristic_Incline.StartUpdatesAsync();
-                await Characteristic_Latitude.StartUpdatesAsync();
-                await Characteristic_Longitude.StartUpdatesAsync();
-                await Characteristic_Compass.StartUpdatesAsync();
-                await Characteristic_Altitude.StartUpdatesAsync();
-                await Characteristic_Power.StartUpdatesAsync();
-                await Characteristic_Calories.StartUpdatesAsync();
-                await Characteristic_GearRatio.StartUpdatesAsync();
-                await Characteristic_Cadence.StartUpdatesAsync();
-                await Characteristic_WindSpeed.StartUpdatesAsync();
-                await Characteristic_WindDirection.StartUpdatesAsync();
-
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("Exception while running StartCharacteristicsUpdates():  " + e.Message);
-            }
-        }
-
-        public async void StopCharacteristicsUpdates()
-        {
-            try
-            {
-                IsUpdatingCharacteristics = false;
-
-                Debug.WriteLine("Stopping Characteristics Updates");
-                await Characteristic_Speed.StopUpdatesAsync();
-                await Characteristic_Distance.StopUpdatesAsync();
-                await Characteristic_AverageSpeed.StopUpdatesAsync();
-                await Characteristic_Acceleration.StopUpdatesAsync();
-                await Characteristic_Incline.StopUpdatesAsync();
-                await Characteristic_Latitude.StopUpdatesAsync();
-                await Characteristic_Longitude.StopUpdatesAsync();
-                await Characteristic_Compass.StopUpdatesAsync();
-                await Characteristic_Altitude.StopUpdatesAsync();
-                await Characteristic_Power.StopUpdatesAsync();
-                await Characteristic_Calories.StopUpdatesAsync();
-                await Characteristic_GearRatio.StopUpdatesAsync();
-                await Characteristic_Cadence.StopUpdatesAsync();
-                await Characteristic_WindSpeed.StopUpdatesAsync();
-                await Characteristic_WindDirection.StopUpdatesAsync();
-
-                Characteristic_Speed.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Distance.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_AverageSpeed.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Acceleration.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Incline.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Latitude.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Longitude.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Compass.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Altitude.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Power.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Calories.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_GearRatio.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_Cadence.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_WindSpeed.ValueUpdated -= Characteristic_ValueUpdated;
-                Characteristic_WindDirection.ValueUpdated -= Characteristic_ValueUpdated;
-
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("Exception while running StopCharacteristicsUpdates():  " + e.Message);
-            }
-        }
-
         public async void GetService(Guid guid)
         {
             if (BLEDevice == null)
@@ -241,7 +144,8 @@ namespace Companion.ViewModels
             Service = await BLEDevice.GetServiceAsync(guid);
             if (Service != null)
             {
-                Debug.WriteLine("GetServices() for Guid: {guid} was successful!");
+                Debug.WriteLine("GetServices() for Guid: {0} was successful!", guid);
+                return;
             }
             else
             {
@@ -249,125 +153,68 @@ namespace Companion.ViewModels
             }
         }
 
-        public async void GetCharacteristics()
+        public async void GetCharacteristicsList()
         {
-            if (Service == null)
+            if(Service == null)
             {
-                Debug.WriteLine("GetServices() failed. No Service was found.");
+                Debug.WriteLine("GetCharacteristics() failed. no Service was detected.");
                 return;
             }
 
-            Characteristic_Speed = await Service.GetCharacteristicAsync(GattIdentifiers.SpeedID);
-            Characteristic_Distance = await Service.GetCharacteristicAsync(GattIdentifiers.DistanceID);
-            Characteristic_AverageSpeed = await Service.GetCharacteristicAsync(GattIdentifiers.AverageSpeedID);
-            Characteristic_Acceleration = await Service.GetCharacteristicAsync(GattIdentifiers.AccelerationID);
-            Characteristic_Incline = await Service.GetCharacteristicAsync(GattIdentifiers.InclineID);
-            Characteristic_Latitude = await Service.GetCharacteristicAsync(GattIdentifiers.LatitudeID);
-            Characteristic_Longitude = await Service.GetCharacteristicAsync(GattIdentifiers.LongitudeID);
-            Characteristic_Compass = await Service.GetCharacteristicAsync(GattIdentifiers.CompassID);
-            Characteristic_Altitude = await Service.GetCharacteristicAsync(GattIdentifiers.AltitudeID);
-            Characteristic_Power = await Service.GetCharacteristicAsync(GattIdentifiers.PowerID);
-            Characteristic_Calories = await Service.GetCharacteristicAsync(GattIdentifiers.CaloriesID);
-            Characteristic_GearRatio = await Service.GetCharacteristicAsync(GattIdentifiers.GearRatioID);
-            Characteristic_Cadence = await Service.GetCharacteristicAsync(GattIdentifiers.CadenceID);
-            Characteristic_WindSpeed = await Service.GetCharacteristicAsync(GattIdentifiers.WindSpeedID);
-            Characteristic_WindDirection = await Service.GetCharacteristicAsync(GattIdentifiers.WindDirectionID);
-
-
-            //this is mainly for debugging
-            if (Characteristic_Speed == null)
+            Characteristics = new List<ICharacteristic>(await Service.GetCharacteristicsAsync());
+            if(Service != null)
             {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
+                Debug.WriteLine("GetCharacteristics() for Service: {0} was successful!", Service);
+                return;
+            }
+            else
+            {
+                Debug.WriteLine("GetCharacteristics() failed.");
+            }
+        }
+
+        public void StartCharacteristicsUpdates()
+        {
+            IsUpdatingCharacteristics = true;
+
+            if (Characteristics.Count == 0)
+            {
+                Debug.WriteLine("StartCharacteristicsUpdates() failed, there are no Characteristics found");
                 return;
             }
 
-            if (Characteristic_Distance == null)
+            foreach (ICharacteristic ch in Characteristics)
             {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
+                Debug.WriteLine($"current ch: {ch.Name}\n");
+
+                if (ch.CanRead)
+                {
+                    ch.StartUpdatesAsync();
+                    ch.ValueUpdated += Characteristic_ValueUpdated;
+                }
             }
 
-            if (Characteristic_AverageSpeed == null)
+            Debug.WriteLine("StartCharacteristicsUpdates() successful");
+
+        }
+
+        public void StopCharacteristicsUpdates()
+        {
+
+
+            foreach (ICharacteristic ch in Characteristics)
             {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
+                Debug.WriteLine($"current ch: {ch.Name}\n");
+
+                if (ch.CanRead)
+                {
+                    ch.StopUpdatesAsync();
+                    ch.ValueUpdated -= Characteristic_ValueUpdated;
+                }
             }
 
-            if (Characteristic_Acceleration == null)
-            {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
-            }
-
-            if (Characteristic_Incline == null)
-            {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
-            }
-
-            if (Characteristic_Latitude == null)
-            {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
-            }
-
-            if (Characteristic_Longitude == null)
-            {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
-            }
-
-            if (Characteristic_Compass == null)
-            {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
-            }
-
-            if (Characteristic_Altitude == null)
-            {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
-            }
-
-            if (Characteristic_Power == null)
-            {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
-            }
-
-            if (Characteristic_Calories == null)
-            {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
-            }
-
-            if (Characteristic_GearRatio == null)
-            {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
-            }
-
-            if (Characteristic_Cadence == null)
-            {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
-            }
-
-            if (Characteristic_WindSpeed == null)
-            {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
-            }
-
-            if (Characteristic_WindDirection == null)
-            {
-                Debug.WriteLine("GetCharacteristics() failed to get one or more characteristics!");
-                return;
-            }
-
-            //
-
-
+            IsUpdatingCharacteristics = false;
+            Debug.WriteLine("StopCharacteristicsUpdates() successful");
         }
 
         public async void StartScanning()
@@ -446,18 +293,89 @@ namespace Companion.ViewModels
             Debug.WriteLine("Timeout", "Bluetooth scan timeout elapsed");
         }
 
-        void Characteristic_ValueUpdated(object sender, CharacteristicUpdatedEventArgs characteristicUpdatedEventArgs)
+        void Characteristic_ValueUpdated(object sender, CharacteristicUpdatedEventArgs e)
         {
             //Triggers any time any of the characteristics' values are updated.
-            //Create a new RecordedEntry and update it with all of the Characteristics
+            //update the specific parameter in RecordedData using switch statement
             //note: most likely need to convert the values at characteristics into floats? make conversion extension? idk how data is sent yet
-            Debug.WriteLine("A Characteristic value was updated");
+            //System.BitConverter.ToSingle(Characteristic, 0) convert byte [] -> float??
+            //System.Text.Encoding.UTF8.GetChars(e.Characteristic.Value) convert byte[] -> string??
 
-            Save();
+            RecordedData temp = new RecordedData()
+            {
+                Speed = 0.0F,
+                Distance = 0.0f,
+                AverageSpeed = 0.0F,
+                Acceleration = 0.0F,
+                Incline = 0.0F,
+                Latitude = 0.0F,
+                Longitude = 0.00F,
+                Compass = 0.0F,
+                Altitude = 0.0F,
+                Power = 0.0F,
+                Calories = 0.0F,
+                GearRatio = 0.0F,
+                Cadence = 0.0F,
+                WindSpeed = 0.0F,
+                WindDirection = "NW"
+            };
 
-            Debug.WriteLine("A new RecordedData was generated");
+            switch (e.Characteristic.Name)
+            {
+                case "Speed":
+                    temp.Speed = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "Distance":
+                    temp.Distance = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "AverageSpeed":
+                    temp.AverageSpeed = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "Acceleration":
+                    temp.Acceleration = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "Incline":
+                    temp.Incline = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "Latitude":
+                    temp.Latitude = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "Longitude":
+                    temp.Longitude = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "Compass":
+                    temp.Compass = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "Altitude":
+                    temp.Altitude = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "Power":
+                    temp.Power = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "Calories":
+                    temp.Calories = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "GearRatio":
+                    temp.GearRatio = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "Cadence":
+                    temp.Cadence = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "WindSpeed":
+                    temp.WindSpeed = System.BitConverter.ToSingle(e.Characteristic.Value, 0);
+                    break;
+                case "WindDirection":
+                    temp.WindDirection = System.BitConverter.ToString(e.Characteristic.Value);
+                    break;
+                default:
+                    Debug.WriteLine("Characteristic with the following name is unknown: {0}", e.Characteristic.Name);
+                    return;
+            }
+
+            this.RecordedData = temp;
+            Debug.WriteLine("Characteristic with the following name was updated: {0}", e.Characteristic.Name);
+            return;
+
         }
-
-
     }
 }

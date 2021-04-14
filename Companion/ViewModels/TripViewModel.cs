@@ -23,21 +23,6 @@ namespace Companion.ViewModels
             }
 
         }
-        //Speed = 0.0F,
-        //Distance = 0.0f,
-        //AverageSpeed = 0.0F,
-        //Acceleration = 0.0F,
-        //Incline = 0.0F,
-        //Latitude = 0.0F,
-        //Longitude = 0.00F,
-        //Compass = 0.0F,
-        //Altitude = 0.0F,
-        //Power = 0.0F,
-        //Calories = 0.0F,
-        //GearRatio = 0.0F,
-        //Cadence = 0.0F,
-        //WindSpeed = 0.0F,
-        //WindDirection = "NW"
 
         public TripViewModel()
         {

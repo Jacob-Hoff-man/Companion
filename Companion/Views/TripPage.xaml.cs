@@ -17,8 +17,8 @@ namespace Companion.Views
         {            
             InitializeComponent();
 
-            //BindingContext =  TripBluetoothViewModel.Instance.RecordedData;
-            BindingContext = new TripViewModel();
+            BindingContext =  BluetoothViewModel.Instance.RecordedData;
+            //BindingContext = new TripViewModel();
 
         }
 
@@ -38,10 +38,13 @@ namespace Companion.Views
             {
                 //there is a BLEDevice connected
                 //get CST Service
-                //TripBluetoothViewModel.Instance.GetService(GattIdentifiers.CSTServiceID);
+                BluetoothViewModel.Instance.GetService(GattIdentifiers.CSTServiceID);
 
-                //get all characteristics from CST Service
-                
+                //get all characteristics from CST Service loaded
+                BluetoothViewModel.Instance.GetCharacteristicsList();
+
+                //start updating characteristics and observe for updates
+                BluetoothViewModel.Instance.StartCharacteristicsUpdates();
 
 
             }

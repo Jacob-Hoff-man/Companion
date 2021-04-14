@@ -10,7 +10,7 @@
                 <Label Text="Goal Profiles:" VerticalOptions="Center" HorizontalOptions="Center" />
             </Frame>
 
-            <ListView x:Name="listViewGoalProfiles" BindingContext="{Binding GoalProfiles}">
+            <ListView x:Name="listViewGoalProfiles">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -42,7 +42,7 @@
 
             <Button x:Name="btnSaveGoalProfile" Text="Save Goal Profile" Command="{Binding SaveGoalProfileCommand}"/>
 
-            <TableView Intent="Form">
+            <!--<TableView Intent="Form">
                 <TableView.Root>
                     <TableSection>
                         <EntryCell Label="Name" Text="{Binding Name}" />
@@ -57,7 +57,7 @@
                         <EntryCell Label="Target Weight" Keyboard="Numeric" Text="{Binding TargetWeight}" />
                     </TableSection>
                 </TableView.Root>
-            </TableView>
+            </TableView>-->
 
 
 

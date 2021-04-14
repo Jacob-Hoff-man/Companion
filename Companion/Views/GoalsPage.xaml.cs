@@ -14,7 +14,7 @@ namespace Companion.Views
         public GoalsPage()
         {
             InitializeComponent();
-            BindingContext = new GoalsViewModel();
+            //BindingContext = new GoalsViewModel();
 
         }
 
