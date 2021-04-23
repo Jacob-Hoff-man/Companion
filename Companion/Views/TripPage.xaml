@@ -6,178 +6,408 @@
              x:Class="Companion.Views.TripPage" Title="Trip" IconImageSource="trip_icon.png"
              >
 
+        <NavigationPage.TitleView>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Image Source="trip_icon.png" />
+                <Label Text="Trip Page"/>
+            </StackLayout>
+        </NavigationPage.TitleView>
 
-<StackLayout  VerticalOptions="Center" HorizontalOptions="Center" Padding="0">
 
-    <Frame BackgroundColor="DarkGray" Padding="10" CornerRadius="0">
-        <Label Text="Trip Page" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" />
-    </Frame>
+    <StackLayout  VerticalOptions="Start" HorizontalOptions="Center" Padding="20">
 
-    <StackLayout HorizontalOptions="Center" Padding="10" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Label x:Name="speedLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Speed: " />
-                   
-                  <Span Text="{Binding RecordedData.Speed}" />
-                  <Span Text=" m/s" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+                <Label Grid.Column="0" FontAttributes="Bold" FontSize="Medium" Text="Speed: " />
+                <Label Grid.Column="1" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.Speed}" />
+                            <Span Text=" m/s" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="distanceLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Distance: " />
-                  <Span Text="{Binding RecordedData.Distance}" />
-                  <Span Text=" km" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+                <Label Grid.Column="0" Grid.Row="1" FontAttributes="Bold" FontSize="Medium" Text="Distance: " />
+                <Label Grid.Column="1" Grid.Row="1" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.Distance}" />
+                            <Span Text=" m" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="averageSpeedLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Average Speed: " />
-                  <Span Text="{Binding RecordedData.AverageSpeed}" />
-                  <Span Text=" m/s" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+            
+                <Label Grid.Column="0" Grid.Row="2" FontAttributes="Bold" FontSize="Medium" Text="Average Speed: " />
+                <Label Grid.Column="1" Grid.Row="2" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.AverageSpeed}" />
+                            <Span Text=" m/s" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="accelerationLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Acceleration: " />
-                  <Span Text="{Binding RecordedData.Acceleration}" />
-                  <Span Text=" m/(s*s)" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+                <Label Grid.Column="0" Grid.Row="3" FontAttributes="Bold" FontSize="Medium" Text="Acceleration: " />
+                <Label Grid.Column="1" Grid.Row="3" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.Acceleration}" />
+                            <Span Text=" m/s²" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="inclineLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Incline: " />
-                  <Span Text="{Binding RecordedData.Incline}" />
-                  <Span Text=" deg" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+                <Label Grid.Column="0" Grid.Row="4" FontAttributes="Bold" FontSize="Medium" Text="Incline: " />
+                <Label Grid.Column="1" Grid.Row="4" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.Incline}" />
+                            <Span Text=" °" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="latitudeLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Latitude: " />
-                  <Span Text="{Binding RecordedData.Latitude}" />
-                  <Span Text=" degrees" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+                <Label Grid.Column="0" Grid.Row="5" FontAttributes="Bold" FontSize="Medium" Text="Latitude: " />
+                <Label Grid.Column="1" Grid.Row="5" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.Latitude}" />
+                            <Span Text=" °" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            
+                <Label Grid.Column="0" Grid.Row="6" FontAttributes="Bold" FontSize="Medium" Text="Longitude: " />
+                <Label Grid.Column="1" Grid.Row="6" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.Longitude}" />
+                            <Span Text=" °" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="longitudeLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Longitude: " />
-                  <Span Text="{Binding RecordedData.Longitude}" />
-                  <Span Text=" degrees" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+            <!---->
+                <Label Grid.Column="0" Grid.Row="7" FontAttributes="Bold" FontSize="Medium" Text="Compass: " TextColor="AntiqueWhite" />
+                <Label Grid.Column="1" Grid.Row="7" FontAttributes="Bold" FontSize="Medium" TextColor="AntiqueWhite">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.Compass}" />
+                            <Span Text=" °" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+           
+                <Label Grid.Column="0" Grid.Row="8" FontAttributes="Bold" FontSize="Medium" Text="Altitude: " />
+                <Label Grid.Column="1" Grid.Row="8" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.Altitude}" />
+                            <Span Text=" m" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="compassLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Compass: " />
-                  <Span Text="{Binding RecordedData.Compass}" />
-                  
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+                <Label Grid.Column="0" Grid.Row="9" FontAttributes="Bold" FontSize="Medium" Text="Power: " />
+                <Label Grid.Column="1" Grid.Row="9" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.Power}" />
+                            <Span Text=" W" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+           
+                <Label Grid.Column="0" Grid.Row="10" FontAttributes="Bold" FontSize="Medium" Text="Calories: " />
+                <Label Grid.Column="1" Grid.Row="10" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.Calories}" />
+                            <Span Text=" kC" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="altitudeLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Altitude: " />
-                  <Span Text="{Binding RecordedData.Altitude}" />
-                  <Span Text=" m" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+                <Label Grid.Column="0" Grid.Row="11" FontAttributes="Bold" FontSize="Medium" Text="Torque: " />
+                <Label Grid.Column="1" Grid.Row="11" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.Torque}" />
+                            <Span Text=" Nm" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="powerLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Power: " />
-                  <Span Text="{Binding RecordedData.Power}" />
-                  <Span Text=" watt" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+                <Label Grid.Column="0" Grid.Row="12" FontAttributes="Bold" FontSize="Medium" Text="Mass: " />
+                <Label Grid.Column="1" Grid.Row="12" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.Mass}" />
+                            <Span Text=" kg" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="caloriesLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Calories: " />
-                  <Span Text="{Binding RecordedData.Calories}" />
-                  <Span Text=" kC" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+                <Label Grid.Column="0" Grid.Row="13" FontAttributes="Bold" FontSize="Medium" Text="Gear Ratio: " />
+                <Label Grid.Column="1" Grid.Row="13" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.GearRatio}" />
+                            <!--<Span Text="" />-->
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+    
+                <Label Grid.Column="0" Grid.Row="14" FontAttributes="Bold" FontSize="Medium" Text="Cadence: " />
+                <Label Grid.Column="1" Grid.Row="14" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.Cadence}" />
+                            <Span Text=" ppm" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="gearRatioLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Gear Ratio: " />
-                  <Span Text="{Binding RecordedData.GearRatio}" />
-                  
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+            <!---->
+                <Label Grid.Column="0" Grid.Row="15" FontAttributes="Bold" FontSize="Medium" Text="Wind Speed: " TextColor="AntiqueWhite" />
+                <Label Grid.Column="1" Grid.Row="15" FontAttributes="Bold" FontSize="Medium" TextColor="AntiqueWhite">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.WindSpeed}" />
+                            <Span Text=" m/s" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="cadenceLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Cadence: " />
-                  <Span Text="{Binding RecordedData.Cadence}" />
-                  <Span Text=" p/m" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+            <!---->
+                <Label Grid.Column="0" Grid.Row="16" FontAttributes="Bold" FontSize="Medium" Text="Wind Direction: " TextColor="AntiqueWhite" />
+                <Label Grid.Column="1" Grid.Row="16" FontAttributes="Bold" FontSize="Medium" TextColor="AntiqueWhite">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding RecordedData.WindDirection}" />
+                            <Span Text=" °" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="windSpeedLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Wind Speed: " />
-                  <Span Text="{Binding RecordedData.WindSpeed}" />
-                  <Span Text=" m/s" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+                <Label Grid.Column="0" Grid.Row="17" FontAttributes="Bold" FontSize="Medium" Text="Trip Time: " />
+                <Label Grid.Column="1" Grid.Row="17" FontAttributes="Bold" FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding ElapsedTime, StringFormat='{0:hh\\:mm\\:ss}'}" />
+                            <!--<Span Text="" />-->
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label x:Name="windDirectionLabel" FontAttributes="Bold" FontSize="Medium">
-            <Label.FormattedText>
-                <FormattedString>
-                  <Span Text="Wind Direction: " />
-                  <Span Text="{Binding RecordedData.WindDirection}" />
-                  <Span Text=" Degrees" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
 
-    </StackLayout>
 
-    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0" >
-        <Button x:Name="buttonStartTrip" Text="Start" FontAttributes="Bold" Clicked="Start_Clicked"></Button>
+        </Grid>
 
-        <Button x:Name="buttonPauseTrip" Text="Pause" FontAttributes="Bold" Clicked="Pause_Clicked"></Button>
 
-        <Button x:Name="buttonFinishTrip" Text="Finish" FontAttributes="Bold" Clicked="Finish_Clicked"></Button>
+        <!--<FlexLayout
+            Direction="Column"
+            AlignItems="Stretch"
+            JustifyContent="SpaceEvenly"
+            >
 
-    </StackLayout>
 
-    <!--<Label Text="Select a Goal Profile" VerticalOptions="Center" HorizontalOptions="Center" />
+            <Label x:Name="speedLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Speed:                  " />
+                        <Span Text="{Binding RecordedData.Speed}" />
+                        <Span Text=" m/s" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="distanceLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Distance: " />
+                        <Span Text="{Binding RecordedData.Distance}" />
+                        <Span Text=" km" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="averageSpeedLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Average Speed: " />
+                        <Span Text="{Binding RecordedData.AverageSpeed}" />
+                        <Span Text=" m/s" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="accelerationLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Acceleration: " />
+                        <Span Text="{Binding RecordedData.Acceleration}" />
+                        <Span Text=" m/(s*s)" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="inclineLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Incline: " />
+                        <Span Text="{Binding RecordedData.Incline}" />
+                        <Span Text=" deg" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="latitudeLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Latitude: " />
+                        <Span Text="{Binding RecordedData.Latitude}" />
+                        <Span Text=" degrees" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="longitudeLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Longitude: " />
+                        <Span Text="{Binding RecordedData.Longitude}" />
+                        <Span Text=" degrees" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="compassLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Compass: " />
+                        <Span Text="{Binding RecordedData.Compass}" />
+
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="altitudeLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Altitude: " />
+                        <Span Text="{Binding RecordedData.Altitude}" />
+                        <Span Text=" m" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="powerLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Power: " />
+                        <Span Text="{Binding RecordedData.Power}" />
+                        <Span Text=" watt" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="caloriesLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Calories: " />
+                        <Span Text="{Binding RecordedData.Calories}" />
+                        <Span Text=" kC" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="gearRatioLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Gear Ratio: " />
+                        <Span Text="{Binding RecordedData.GearRatio}" />
+
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="cadenceLabel" FontAttributes="Bold" FontSize="Medium">
+
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Cadence: " />
+                        <Span Text="{Binding RecordedData.Cadence}" />
+                        <Span Text=" p/m" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="windSpeedLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Wind Speed: " />
+                        <Span Text="{Binding RecordedData.WindSpeed}" />
+                        <Span Text=" m/s" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="windDirectionLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Wind Direction: " />
+                        <Span Text="{Binding RecordedData.WindDirection}" />
+                        <Span Text=" Degrees" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label x:Name="stopWatchLabel" FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Trip Time: " />
+                        <Span Text="{Binding ElapsedTime, StringFormat='{0:hh\\:mm\\:ss}'}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </FlexLayout>-->
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0" >
+            <Button x:Name="buttonStartTrip" Text="Start" FontAttributes="Bold" Clicked="Start_Clicked"></Button>
+
+            <Button x:Name="buttonClearPauseTrip" FontAttributes="Bold" Clicked="ClearPause_Clicked"></Button>
+
+            <Button x:Name="buttonFinishTrip" Text="Finish" FontAttributes="Bold" Clicked="Finish_Clicked"></Button>
+
+        </StackLayout>
+
+        <!--<Label Text="Select a Goal Profile" VerticalOptions="Center" HorizontalOptions="Center" />
 
     <ListView
             x:Name="goalProfileListView"
@@ -196,6 +426,6 @@
             </ListView.ItemTemplate>
         </ListView>-->
 
-</StackLayout>
+    </StackLayout>
 
 </ContentPage>

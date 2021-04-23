@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Companion.Data;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms;
+using Companion.ViewModels;
 using Companion.Models;
 using System.Collections.ObjectModel;
 
@@ -10,38 +11,31 @@ namespace Companion.Views
 {
     public partial class GoalsListPage : ContentPage
     {
-
-        private ObservableCollection<GoalProfile> GoalProfiles = new ObservableCollection<GoalProfile>();
+        GoalsViewModel GoalsViewModel;
 
         public GoalsListPage()
         {
             InitializeComponent();
-            Init();
+            GoalsViewModel = new GoalsViewModel();
+            BindingContext = GoalsViewModel;
 
         }
 
-        public void Init()
+        protected async override void OnAppearing()
         {
-            var enumerator = App.GoalProfileDatabase.GetGoalProfileEnumerated();
-            if(enumerator == null)
-            {
-                App.GoalProfileDatabase.SaveGoalProfile(new GoalProfile { Name = "Cricket", Weight=69 });
-            }
-
-            while(enumerator.MoveNext())
-            {
-                this.GoalProfiles.Add(enumerator.Current);
-            }
-
-            listViewGoalProfiles.ItemsSource = GoalProfiles;
+            base.OnAppearing();
+            GoalsViewModel.GoalProfiles = new ObservableCollection<GoalProfile>(await App.GoalProfileRepo.GetRepoItems());
         }
 
-        private void ButtonClickedOnDelete(System.Object sender, System.EventArgs e)
+        async void GoalProfile_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
-            var item = (MenuItem)sender;
-            var model = (GoalProfile)item.CommandParameter;
-            GoalProfiles.Remove(model);
-            App.GoalProfileDatabase.DeleteGoalProfile(model.ID);
+            await Navigation.PushAsync(new GoalsPage(e.Item as GoalProfile));
         }
+
+        async void NewGoalPofile_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new GoalsPage());
+        }
+
     }
 }

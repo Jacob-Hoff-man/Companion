@@ -20,6 +20,8 @@
     <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="MvvmCross.Forms" Version="7.1.2" />
+    <PackageReference Include="Microcharts" Version="0.9.5.9" />
+    <PackageReference Include="Microcharts.Forms" Version="0.9.5.9" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />

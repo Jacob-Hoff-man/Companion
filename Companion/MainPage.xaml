@@ -3,11 +3,33 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Companion.MainPage"
-    xmlns:local="clr-namespace:Companion.Views">
+    xmlns:local="clr-namespace:Companion.Views"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    android:TabbedPage.ToolbarPlacement="Bottom">
 
-    <local:TripPage></local:TripPage>
-    <local:PerformancePage></local:PerformancePage>
-    <local:GoalsPage></local:GoalsPage>
-    <local:SettingsPage></local:SettingsPage>
+
+    <NavigationPage Title="Trip" IconImageSource="trip_icon.png">
+        <x:Arguments>
+            <local:TripPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Performance" IconImageSource="performance_icon.png">
+        <x:Arguments>
+            <local:TripListPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Goals" IconImageSource="goals_icon.png">
+        <x:Arguments>
+            <local:GoalsListPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Settings" IconImageSource="settings_icon.png">
+        <x:Arguments>
+            <local:SettingsPage></local:SettingsPage>
+        </x:Arguments>
+    </NavigationPage>
 
 </TabbedPage>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Companion.ViewModels;
 
 using Xamarin.Forms;
 
@@ -7,31 +8,24 @@ namespace Companion.Views
 {
     public partial class SettingsPage : ContentPage
     {
+        SettingsViewModel SettingsViewModel;
+
         public SettingsPage()
         {
             InitializeComponent();
+            SettingsViewModel = new SettingsViewModel();
+            //BindingContext = SettingsViewModel;
         }
 
-        private void ButtonClickedDeleteAllGoalProfiles(System.Object sender, System.EventArgs e)
+        private void DeleteGoalProfiles_Clicked(System.Object sender, System.EventArgs e)
         {
-            App.GoalProfileDatabase.DeleteAllGoalProfiles();
-
-
+            SettingsViewModel.DeleteGoalProfiles();
         }
 
-        private void ButtonClickedDeleteAllTrips(System.Object sender, System.EventArgs e)
+        private void DeleteTrips_Clicked(System.Object sender, System.EventArgs e)
         {
-            App.TripsDatabase.DeleteAllTrips();
-
+            SettingsViewModel.DeleteTrips();
         }
-        //private async void ButtonClickedDeleteGoalProfilesAsync(object sender, EventArgs e)
-        //{
-        //    //App.GoalProfileDatabase.;
-        //}
 
-        //private async void ButtonClickedDeleteTripsAsync(object sender, EventArgs e)
-        //{
-        //    //await App.TripsDatabase.DeleteAllTrips();
-        //}
     }
 }

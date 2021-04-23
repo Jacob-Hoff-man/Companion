@@ -4,12 +4,19 @@
              xmlns:local="clr-namespace:Companion.Models"
              x:Class="Companion.Views.SettingsPage" Title="Settings" IconImageSource="settings_icon.png">
 
+        <NavigationPage.TitleView>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Image Source="settings_icon.png" />
+                <Label Text="Settings Page"/>
+            </StackLayout>
+        </NavigationPage.TitleView>
+
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="20">
 
-        <Frame BackgroundColor="DarkGray" Padding="24" CornerRadius="0">
+        <!--<Frame BackgroundColor="DarkGray" Padding="24" CornerRadius="0">
             <Label Text="Settings Page" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"  />
+        </Frame>-->
 
-        </Frame>
         <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="Gray">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -22,9 +29,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label x:Name="deleteGoalProfilesText" Text="Delete all goal profile data from your device?" Grid.Row="0" Grid.Column="0"/>
-            <Button x:Name="btnDeleteGoalProfiles" Text="Delete Goal Profiles" Grid.Row="1" Grid.Column="0" />
+            <Button x:Name="btnDeleteGoalProfiles" Text="Delete Goal Profiles" Clicked="DeleteGoalProfiles_Clicked" Grid.Row="1" Grid.Column="0" />
             <Label x:Name="deleteTripsText" Text="Delete all trips data from your device?" Grid.Row="2" Grid.Column="0"/>
-            <Button x:Name="btnDeleteTrips" Text="Delete All Trips" Grid.Row="3" Grid.Column="0" />
+            <Button x:Name="btnDeleteTrips" Text="Delete All Trips" Clicked="DeleteTrips_Clicked" Grid.Row="3" Grid.Column="0" />
         </Grid>
 
     </StackLayout>

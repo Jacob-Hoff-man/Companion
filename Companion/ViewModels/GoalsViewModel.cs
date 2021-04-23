@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using System.Diagnostics;
 
+
 namespace Companion.ViewModels
 {
     public class GoalsViewModel : BaseViewModel
@@ -148,6 +149,8 @@ namespace Companion.ViewModels
             }
         }
 
+
+        public bool IsNewGoalProfile;
         //Commands
         Command _saveGoalProfileCommand;
         public Command SaveGoalProfileCommand => _saveGoalProfileCommand ?? (_saveGoalProfileCommand = new Command(Save)); 
@@ -157,29 +160,36 @@ namespace Companion.ViewModels
 
         public GoalsViewModel()
         {
-            var count = 0;
-            //get list of GoalProfiles stored in database, if any
-            var enumerator = App.GoalProfileDatabase.GetGoalProfileEnumerated();
-            if (enumerator == null)
-            {
-                Debug.WriteLine("No values found in GoalProfileDatabase. Adding sample value.\n");
-                App.GoalProfileDatabase.SaveGoalProfile(new GoalProfile { Name = "Cricket", Weight = 69 });
-            }
-
-            //enumerator != null, while .MoveNext()
-            while (enumerator.MoveNext())
-            {
-                Debug.WriteLine("Values detected in GoalProfileDatabase. Adding to this.GoalProfiles in GoalsViewModel\n");
-                count++;
-                this.GoalProfiles.Add(enumerator.Current);
-                Debug.WriteLine("current value from GoalProfileDatabase: {0}\n", enumerator.Current.Name);
-            }
-            Debug.WriteLine("Total items added to this.GoalProfiles in GoalsViewModel: {0}\n", count);
-
-
+            InitAsync();
+            IsNewGoalProfile = true;
         }
 
-        void Save()
+        public GoalsViewModel(GoalProfile goalProfile)
+        {
+            InitAsync();
+            this.Name = goalProfile.Name;
+            this.BirthDate = goalProfile.BirthDate;
+            this.Gender = goalProfile.Gender;
+            this.Feet = goalProfile.Feet;
+            this.Inches = goalProfile.Inches;
+            this.Weight = goalProfile.Weight;
+            this.TireDiameter = goalProfile.TireDiameter;
+            this.GoalMode = goalProfile.GoalMode;
+            this.TargetWeight = goalProfile.TargetWeight;
+
+            IsNewGoalProfile = false;
+        }
+
+        async void InitAsync()
+        {
+            //initializing the goal profile repo and loading in the database
+            await App.GoalProfileRepo.Initialize();
+            GoalProfiles = new ObservableCollection<GoalProfile>(await App.GoalProfileRepo.GetRepoItems());
+        }
+
+
+
+        public void Save()
         {
             Debug.WriteLine("Attempting to save goal profile");
 
@@ -200,9 +210,11 @@ namespace Companion.ViewModels
             Debug.WriteLine("GoalProfile generated", Name);
 
             this.GoalProfiles.Add(newGoalProfile);
-            var result = App.GoalProfileDatabase.SaveGoalProfile(newGoalProfile);
+            var result = App.GoalProfileRepo.AddOrUpdateItems(newGoalProfile);
 
             Debug.WriteLine("GoalProfileDatabase rows added: {0}", result);
+
+
         }
     }
 }

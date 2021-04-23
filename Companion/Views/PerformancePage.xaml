@@ -1,14 +1,51 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              x:Class="Companion.Views.PerformancePage" Title="Performance" IconImageSource="performance_icon.png">
+            
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Image Source="performance_icon.png"  />
+            <Label Text="Performance" />
+        </StackLayout>
+    </NavigationPage.TitleView>
 
-    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-        <Frame BackgroundColor="DarkGray" Padding="10" CornerRadius="0">
-            <Label Text="Trip Page" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large" />
-        </Frame>
+    <ScrollView>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
 
-        <Label Text="Welcome to Performance Page" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"  />
-    </StackLayout>
+            <Label FontAttributes="Bold" FontSize="Medium">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Total Time: " />
+                        <Span Text="{Binding Count}" />
+                        <Span Text=" seconds" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+
+            <forms:ChartView x:Name="Chart1" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart2" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart3" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart4" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart5" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart6" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart7" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart8" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart9" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart10" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart11" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart12" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart13" HeightRequest="150" MinimumWidthRequest="250"/>
+            <forms:ChartView x:Name="Chart14" HeightRequest="150" MinimumWidthRequest="300" />
+            <!--<forms:ChartView x:Name="Chart15" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart16" HeightRequest="150" />
+            <forms:ChartView x:Name="Chart17" HeightRequest="150" />-->
+
+        </StackLayout>
+
+    </ScrollView>
+
 
 </ContentPage>

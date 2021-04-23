@@ -1,21 +1,68 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Companion.ViewModels"
-             x:Class="Companion.Views.GoalsPage" Title="Goals" IconImageSource="goals_icon.png">
+             x:Class="Companion.Views.GoalsPage" >
+
+<ContentPage.ToolbarItems>
+    <ToolbarItem Text="Save"
+                 Clicked="Save_Clicked"/>
+
+</ContentPage.ToolbarItems>
 
     <ScrollView>
         <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="5">
 
-            <Frame BackgroundColor="DarkGray" CornerRadius="0">
+            <!--<Frame BackgroundColor="DarkGray" CornerRadius="0">
                 <Label Text="Goal Profiles:" VerticalOptions="Center" HorizontalOptions="Center" />
+            </Frame>-->
+
+            <Frame BackgroundColor="DarkGray" Padding="24" CornerRadius="0">
+                <Label x:Name="label" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"  />
             </Frame>
 
-            <ListView x:Name="listViewGoalProfiles">
+            <TableView Intent="Form">
+                <TableView.Root>
+                    <TableSection>
+                        <EntryCell Label="Name" Text="{Binding Name}" />
+                        <EntryCell Label="Date of Birth" Text="{Binding BirthDate, StringFormat='{0:d}'}" />
+                        <EntryCell Label="Gender" Text="{Binding Gender}" />
+                        <EntryCell Label="Height" />
+                        <EntryCell Label="Feet" Keyboard="Numeric" Text="{Binding Feet}" />
+                        <EntryCell Label="Inches" Keyboard="Numeric" Text="{Binding Inches}" />
+                        <EntryCell Label="Weight" Keyboard="Numeric" Text="{Binding Weight}" />
+                        <EntryCell Label="Tire Diameter" Keyboard="Numeric" Text="{Binding TireDiameter}" />
+                        <EntryCell Label="Goal Mode" Text="{Binding GoalMode}" />
+                        <EntryCell Label="Target Weight" Keyboard="Numeric" Text="{Binding TargetWeight}" />
+                    </TableSection>
+                </TableView.Root>
+            </TableView>
+
+
+            <!--<ListView
+                x:Name="listView"
+                ItemsSource="{Binding GoalProfiles}"
+                BackgroundColor="White"
+                HorizontalOptions="FillAndExpand"
+                ItemTapped="Device_ItemTapped"
+                VerticalOptions="FillAndExpand">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell
+                            Detail="{Binding TireDiameter}"
+                            Text="{Binding Name}"
+                            TextColor="Black" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>-->
+
+            <!--<ListView x:Name="listView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                
+
                             </ViewCell.ContextActions>
 
                             <ViewCell.View>
@@ -32,32 +79,11 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
 
 
 
-            <Frame BackgroundColor="DarkGray" Padding="24" CornerRadius="0">
-                <Label Text="Create Goal Profile:" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"  />
-            </Frame>
 
-            <Button x:Name="btnSaveGoalProfile" Text="Save Goal Profile" Command="{Binding SaveGoalProfileCommand}"/>
-
-            <!--<TableView Intent="Form">
-                <TableView.Root>
-                    <TableSection>
-                        <EntryCell Label="Name" Text="{Binding Name}" />
-                        <EntryCell Label="Date of Birth" Text="{Binding BirthDate, StringFormat='{0:d}'}" />
-                        <EntryCell Label="Gender" Text="{Binding Gender}" />
-                        <EntryCell Label="Height" />
-                        <EntryCell Label="Feet" Keyboard="Numeric" Text="{Binding Feet}" />
-                        <EntryCell Label="Inches" Keyboard="Numeric" Text="{Binding Inches}" />
-                        <EntryCell Label="Weight" Keyboard="Numeric" Text="{Binding Weight}" />
-                        <EntryCell Label="Tire Diameter" Keyboard="Numeric" Text="{Binding TireDiameter}" />
-                        <EntryCell Label="Goal Mode" Text="{Binding GoalMode}" />
-                        <EntryCell Label="Target Weight" Keyboard="Numeric" Text="{Binding TargetWeight}" />
-                    </TableSection>
-                </TableView.Root>
-            </TableView>-->
 
 
 
@@ -138,7 +164,7 @@
             </Grid>-->
 
 
-                <!--<ListView.ItemTemplate>
+<!--<ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>

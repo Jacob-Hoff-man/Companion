@@ -1,41 +1,34 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Companion.Views.GoalsListPage" Title="Goals Page" IconImageSource="goals_icon.png">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Companion.Views.TripListPage">
 
 <NavigationPage.TitleView>
     <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-        <Image Source="goals_icon.png" />
-        <Label Text="Goals Page"/>
+            <Image Source="performance_icon.png" />
+            <Label Text="Performance Page"/>
     </StackLayout>
 </NavigationPage.TitleView>
 
-<ContentPage.ToolbarItems>
-    <ToolbarItem IconImageSource="add_icon.png"
-                 Clicked="NewGoalPofile_Clicked"/>
-        
-</ContentPage.ToolbarItems>
-
-<ContentPage.Content>
-
+    <ContentPage.Content>
 
         <StackLayout>
              <Frame BackgroundColor="DarkGray" Padding="24" CornerRadius="0">
-                <Label Text="Select Goal Profile to edit:" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Label Text="Select a Trip:" VerticalOptions="Center" HorizontalOptions="Center" />
             </Frame>
 
             <ListView
                 x:Name="listView"
-                ItemsSource="{Binding GoalProfiles}"
                 BackgroundColor="White"
                 HorizontalOptions="FillAndExpand"
-                ItemTapped="GoalProfile_ItemTapped"
+                ItemTapped="Trip_ItemTapped"
                 VerticalOptions="FillAndExpand">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell
-                            Detail="{Binding TireDiameter}"
+                            Detail="{Binding Id}"
                             Text="{Binding Name}"
                             TextColor="Black" />
                     </DataTemplate>
@@ -46,5 +39,4 @@
         </StackLayout>
         
     </ContentPage.Content>
-
 </ContentPage>

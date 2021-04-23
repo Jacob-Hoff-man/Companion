@@ -13,16 +13,22 @@ namespace Companion.Models
         public int ID { get; set; }
 
         public string Name { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
         public List<RecordedData> TripData { get; set; }
         public GoalProfile GoalProfile { get; set; }
 
-        public Trip() { }
+        public Trip()
+        {
+            TripData = new List<RecordedData>();
+
+        }
     
     }
 
     public class RecordedData
     {
-
+        //all of these parameters are collected via ble
         public float Speed { get; set; }
         public float Distance { get; set; }
         public float AverageSpeed { get; set; }
@@ -36,224 +42,33 @@ namespace Companion.Models
         public float Calories { get; set; }
         public float GearRatio { get; set; }
         public float Cadence { get; set; }
+        public float Torque { get; set; }
+        public float Mass => Torque / 0.175F;
         public float WindSpeed { get; set; }
-        public string WindDirection { get; set; }
+        public float WindDirection { get; set; }
+
+        //used to record trips, not sent via ble
+        public int ElapsedSeconds { get; set; }
 
         public RecordedData()
         {
-
+            Speed = 0.0F;
+            Distance = 0.0f;
+            AverageSpeed = 0.0F;
+            Acceleration = 0.0F;
+            Incline = 0.0F;
+            Latitude = 0.0F;
+            Longitude = 0.00F;
+            Compass = 0.0F;
+            Altitude = 0.0F;
+            Power = 0.0F;
+            Calories = 0.0F;
+            GearRatio = 0.0F;
+            Cadence = 0.0F;
+            Torque = 0.0F;
+            WindSpeed = 0.0F;
+            WindDirection = 0.0F;
         }
-
-        //private float _speed;
-        //public float Speed
-        //{
-        //    get
-        //    {
-        //        return _speed;
-        //    }
-        //    set
-        //    {
-        //        _speed = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private float _distance;
-        //public float Distance
-        //{
-        //    get
-        //    {
-        //        return _distance;
-        //    }
-        //    set
-        //    {
-        //        _distance = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private float _averageSpeed;
-        //public float AverageSpeed
-        //{
-        //    get
-        //    {
-        //        return _averageSpeed;
-        //    }
-        //    set
-        //    {
-        //        _averageSpeed = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private float _acceleration;
-        //public float Acceleration
-        //{
-        //    get
-        //    {
-        //        return _acceleration;
-        //    }
-        //    set
-        //    {
-        //        _acceleration = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private float _incline;
-        //public float Incline
-        //{
-        //    get
-        //    {
-        //        return _incline;
-        //    }
-        //    set
-        //    {
-        //        _incline = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private float _latitude;
-        //public float Latitude
-        //{
-        //    get
-        //    {
-        //        return _latitude;
-        //    }
-        //    set
-        //    {
-        //        _latitude = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private float _longitude;
-        //public float Longitude
-        //{
-        //    get
-        //    {
-        //        return _longitude;
-        //    }
-        //    set
-        //    {
-        //        _longitude = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private float _compass;
-        //public float Compass
-        //{
-        //    get
-        //    {
-        //        return _compass;
-        //    }
-        //    set
-        //    {
-        //        _compass = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private float _altitude;
-        //public float Altitude
-        //{
-        //    get
-        //    {
-        //        return _altitude;
-        //    }
-        //    set
-        //    {
-        //        _altitude = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private float _power;
-        //public float Power
-        //{
-        //    get
-        //    {
-        //        return _power;
-        //    }
-        //    set
-        //    {
-        //        _power = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private float _calories;
-        //public float Calories
-        //{
-        //    get
-        //    {
-        //        return _calories;
-        //    }
-        //    set
-        //    {
-        //        _calories = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private float _gearRatio;
-        //public float GearRatio
-        //{
-        //    get
-        //    {
-        //        return _gearRatio;
-        //    }
-        //    set
-        //    {
-        //        _gearRatio = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private float _cadence;
-        //public float Cadence
-        //{
-        //    get
-        //    {
-        //        return _cadence;
-        //    }
-        //    set
-        //    {
-        //        _cadence = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private float _windSpeed;
-        //public float WindSpeed
-        //{
-        //    get
-        //    {
-        //        return _windSpeed;
-        //    }
-        //    set
-        //    {
-        //        _windSpeed = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _windDirection;
-        //public string WindDirection
-        //{
-        //    get
-        //    {
-        //        return _windDirection;
-        //    }
-        //    set
-        //    {
-        //        _windDirection = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
 
     }
 }
