@@ -1,4 +1,3 @@
-# -----
 # Senior Project Final Demonstration Video
 The Cycle Statistic Tool final demonstration was presented on 04/20/21. A [YouTube video](https://youtu.be/cTovEaKmmAo) made by the project team was used to demonstrate the project's functionality at this time.
 # -----
