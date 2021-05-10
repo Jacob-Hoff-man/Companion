@@ -1,13 +1,11 @@
 # -----
 # Senior Project Final Demonstration Video
-The Cycle Statistic Tool final demonstration was presented on 04/20/21. A YouTube video made by the project team to demonstrate the project's functionality can be viewed with the following link:
-
-https://youtu.be/cTovEaKmmAo
+The Cycle Statistic Tool final demonstration was presented on 04/20/21. A [YouTube video](https://youtu.be/cTovEaKmmAo) made by the project team was used to demonstrate the project's functionality at this time.
 # -----
 # Cycle Statistic Tool Companion Mobile Application
 Written in C# using the Xamarin platform.
 
-For documentation of the mobile application design, check out the Software Requirements Specifications.pdf file. 
+For documentation of the mobile application design, check out the [Software Requirements Specifications.pdf](https://github.com/Jacob-Hoff-man/Companion/blob/main/Companion%20Software%20Requirements%20Specifications.pdf) file. 
 # -----
 # Cycle Statistic Tool Hardware
 Written in C++.
