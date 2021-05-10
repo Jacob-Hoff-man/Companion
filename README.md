@@ -1,7 +1,8 @@
 # Senior Project Final Demonstration Video
+The Cycle Statistic Tool final demonstration was presented on 04/20/21. A YouTube video made by the project team can be viewed with the following link:
 
 https://youtu.be/cTovEaKmmAo
-
+# -----
 # Cycle Statistic Tool Companion Mobile Application
 Written in C# using the Xamarin platform.
 
