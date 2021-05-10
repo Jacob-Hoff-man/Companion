@@ -1,5 +1,11 @@
+# Senior Project Final Demonstration Video
+
+https://youtu.be/cTovEaKmmAo
+
 # Cycle Statistic Tool Companion Mobile Application
 Written in C# using the Xamarin platform.
+
+For documentation of the mobile application design, check out the Software Requirements Specifications.pdf file. 
 # -----
 # Cycle Statistic Tool Hardware
 Written in C++.
