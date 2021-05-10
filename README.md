@@ -1,7 +1,7 @@
 # Cycle Statistic Tool Companion Mobile Application
-A repository containing the source code for my undergraduate senior project at University of Pittsburgh - Johnstown. The [Cycle Statistic Tool]() is a data recording device attached to the frame of a bicycle. From this position, the Cycle Statistic Tool will transmit data to a companion mobile application that is installed on a user’s smartphone.The Arduino hardware was programmed using C++. The cross-platform mobile application was programmed using the .NET/Xamarin platform and C#.
+A repository containing the source code for my undergraduate senior project at University of Pittsburgh - Johnstown. The [Cycle Statistic Tool](https://github.com/Jacob-Hoff-man/Companion/blob/main/Cycle%20Statistic%20Tool%20Abstract.pdf) is a data recording device attached to the frame of a bicycle. From this position, the Cycle Statistic Tool will transmit data to a companion mobile application that is installed on a user’s smartphone.The Arduino hardware was programmed using C++. The cross-platform mobile application was programmed using the .NET/Xamarin platform and C#.
 
-The senior project [final report]() provides an overview of the Cycle Statistic Tool's engineering process.
+The senior project [final report](https://github.com/Jacob-Hoff-man/Companion/blob/main/Cycle%20Statistic%20Tool%20Final%20Report.pdf) provides an overview of the Cycle Statistic Tool's engineering process.
 # Senior Project Final Demonstration Video
 The Cycle Statistic Tool final demonstration was presented on 04/20/21. A [YouTube video](https://youtu.be/cTovEaKmmAo) made by the project team was used to demonstrate the project's functionality at this time.
 # -----
